@@ -1,24 +1,46 @@
-# OfflineMonitor
+# Offline Monitor Service For Angular
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Provides an `Observable` to monitor application network state as provided by
+[online and offline events](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events).
+If API is not supported by the environment, `supported` flag is set to `false` and
+`state` emits `false`.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name --project offline-monitor` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project offline-monitor`.
-> Note: Don't forget to add `--project offline-monitor` or else it will be added to the default project in your `angular.json` file. 
+Install through npm:
 
-## Build
+`$ npm i @elemental-concept/offline-monitor`
 
-Run `ng build offline-monitor` to build the project. The build artifacts will be stored in the `dist/` directory.
+or yarn:
 
-## Publishing
+`$ yarn add @elemental-concept/offline-monitor`
 
-After building your library with `ng build offline-monitor`, go to the dist folder `cd dist/offline-monitor` and run `npm publish`.
+## Usage
 
-## Running unit tests
+Import `OfflineMonitorModule` inside one of your Angular modules or inside `AppModule` if you want to make it globally available.
+Inject into your component or service `OfflineMonitorService` and subscribe to `state` changes.
 
-Run `ng test offline-monitor` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```typescript
+import { Component, OnInit } from '@angular/core';
 
-## Further help
+import { OfflineMonitorService } from '@elemental-concept/offline-monitor';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.scss' ]
+})
+export class AppComponent implements OnInit {
+  online: boolean;
+
+  constructor(private readonly offlineMonitor: OfflineMonitorService) {
+  }
+
+  ngOnInit() {
+    this.offlineMonitor
+      .state
+      .subscribe(online => this.online = online);
+  }
+}
+
+```
