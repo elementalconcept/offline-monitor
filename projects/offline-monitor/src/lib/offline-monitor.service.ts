@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, shareReplay, startWith } from 'rxjs/operators';
 
 import { OfflineMonitorModule } from './offline-monitor.module';
 
@@ -16,7 +16,8 @@ export class OfflineMonitorService {
       this.emitter$ = merge(fromEvent(window, 'online'), fromEvent(window, 'offline'))
         .pipe(
           map(event => event.type === 'online'),
-          startWith(window.navigator.onLine));
+          startWith(window.navigator.onLine),
+          shareReplay(1));
     } else {
       this.supportFlag = false;
       this.emitter$ = new BehaviorSubject(false).asObservable();
