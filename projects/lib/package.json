@@ -1,6 +1,17 @@
 {
   "name": "@elemental-concept/offline-monitor",
   "version": "0.8.2",
+  "description": "Provides an `Observable` to monitor application network state",
+  "author": "Elemental Concept",
+  "homepage": "https://github.com/elementalconcept/offline-monitor#readme",
+  "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elementalconcept/offline-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elementalconcept/offline-monitor/issues"
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   },
