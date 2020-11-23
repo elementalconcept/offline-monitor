@@ -1,8 +1,9 @@
 {
   "name": "@elemental-concept/offline-monitor",
-  "version": "0.2.0",
+  "version": "0.8.2",
   "peerDependencies": {
-    "@angular/core": "^8.0.3",
-    "rxjs": "^6.4.0"
+    "@angular/common": ">= 8 < 12",
+    "@angular/core": ">= 8 < 12",
+    "rxjs": ">= 6.0.0 < 7"
   }
 }
